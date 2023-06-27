@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { app } = require("./../firebase");
-const { getFirestore, doc, setDoc, addDoc, collection } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, addDoc, collection, getDocs } = require("firebase/firestore");
 const db = getFirestore(app);
 const basePath = "Technologies";
 
@@ -26,7 +26,31 @@ const createDoc = async request => {
     }
 }
 
-router.post("/", async (req, res) => {
+// get document in firestore
+const readDoc = async () => {
+    try {
+        const dataCollection = [];
+
+        const querySnapshot = await getDocs(collection(db, "technologies"));
+        querySnapshot.forEach((doc) => {
+            const dataWithId = doc.data();
+            dataWithId["id"] = doc.id; //add id property
+            dataCollection.push(dataWithId);
+        });
+        console.log(dataCollection);
+
+        return dataCollection;
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+}
+
+router.get("/", async (req, res) => {
+    res.send(await readDoc());
+});
+
+router.post("/new", async (req, res) => {
     res.send(await createDoc(req));
 });
 

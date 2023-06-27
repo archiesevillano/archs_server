@@ -19,10 +19,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const projects = require("./endpoints/Projects");
 const user = require("./endpoints/User");
 const technologies = require("./endpoints/Technologies");
+const file = require("./endpoints/File");
+const services = require("./endpoints/Services");
+const certificates = require("./endpoints/Certificates");
 
 app.use("/projects", projects);
 app.use("/user", user);
 app.use("/technologies", technologies);
+app.use("/file", file);
+app.use("/services", services);
+app.use("/certificates", certificates);
 
 app.listen(PORT, () => {
     console.log("Server is now running...");
