@@ -22,6 +22,8 @@ const technologies = require("./endpoints/Technologies");
 const file = require("./endpoints/File");
 const services = require("./endpoints/Services");
 const certificates = require("./endpoints/Certificates");
+const email = require("./endpoints/Emailer");
+const about = require("./endpoints/About");
 
 app.use("/projects", projects);
 app.use("/user", user);
@@ -29,6 +31,8 @@ app.use("/technologies", technologies);
 app.use("/file", file);
 app.use("/services", services);
 app.use("/certificates", certificates);
+app.use("/send-email", email);
+app.use("/about", about);
 
 app.listen(PORT, () => {
     console.log("Server is now running...");
