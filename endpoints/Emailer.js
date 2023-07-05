@@ -14,12 +14,12 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const send = async () => {
+const send = async (email, message) => {
     const result = await transporter.sendMail({
-        from: MAIL_ACC,
-        to: "archie.sevillano29@gmail.com",
-        subject: 'Hello World',
-        html: '<h1 style="background: red; color: white">This is a test</h1>'
+        from: "ARCHS",
+        to: email,
+        subject: "[Auto-generated message]",
+        html: message
     });
 
     const info = await JSON.stringify(result, null, 4);
@@ -30,11 +30,10 @@ const send = async () => {
 router.post("/", async (req, res) => {
     try {
         //data to send
-        const { receiver, message, subject } = req.body;
+        const { email, message } = req.body;
 
-        console.log([receiver, message, subject]);
         //start sending email
-        const data = await send();
+        const data = await send(email, message);
         res.send(data);
     }
     catch (err) {
