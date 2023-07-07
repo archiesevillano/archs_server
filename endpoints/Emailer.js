@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
-const { MAIL_ACC } = process.env;
+const { MAIL_ACC, TO_EMAIL } = process.env;
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 const send = async (email, message) => {
     const result = await transporter.sendMail({
         from: "ARCHS",
-        to: email,
+        to: TO_EMAIL,
         subject: "[Auto-generated message]",
         html: message
     });
