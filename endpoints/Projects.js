@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { app } = require("./../firebase");
-const { getFirestore, doc, setDoc } = require("firebase/firestore");
-const db = getFirestore(app);
+const { getFirestore, doc, getDocs, collection } = require("firebase/firestore");
 
 router.get("/", async (req, res) => {
     try {
