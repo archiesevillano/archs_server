@@ -26,7 +26,6 @@ const email = require("./endpoints/Emailer");
 const about = require("./endpoints/About");
 
 app.use("/projects", projects);
-app.use("/user", user);
 app.use("/technologies", technologies);
 app.use("/file", file);
 app.use("/services", services);
