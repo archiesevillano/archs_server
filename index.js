@@ -9,7 +9,7 @@ config();
 
 //restrict specific host
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: process.env.CLIENT
 }));
 
 app.use(express.json());
