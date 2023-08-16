@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //import Routes
 const projects = require("./endpoints/Projects");
-const user = require("./endpoints/User");
 const technologies = require("./endpoints/Technologies");
 const file = require("./endpoints/File");
 const services = require("./endpoints/Services");
@@ -32,6 +31,9 @@ app.use("/services", services);
 app.use("/certificates", certificates);
 app.use("/send-email", email);
 app.use("/about", about);
+app.get("/", (req, res) => {
+    res.send(true);
+})
 
 app.listen(PORT, () => {
     console.log("Server is now running...");
